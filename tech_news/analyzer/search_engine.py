@@ -4,7 +4,7 @@ import datetime
 
 
 # Recebe uma lista de dict e devolve uma lista de tuplas
-def extract_title_and_link(dict_list):
+def format_response_to_list_of_tuple(dict_list):
     return [(news["title"], news["url"]) for news in dict_list]
 
 
@@ -12,7 +12,7 @@ def extract_title_and_link(dict_list):
 def search_by_title(title):
     query = {"title": re.compile(title, re.IGNORECASE)}
     news_searched = search_news(query)
-    response = extract_title_and_link(news_searched)
+    response = format_response_to_list_of_tuple(news_searched)
 
     return response
 
@@ -30,14 +30,18 @@ def search_by_date(date):
 
         query = {"timestamp": date_formated}
         news_searched = search_news(query)
-        return extract_title_and_link(news_searched)
+        return format_response_to_list_of_tuple(news_searched)
     except ValueError:
         raise ValueError("Data inválida")
 
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    query = {"tags": re.compile(tag, re.IGNORECASE)}
+    news_searched = search_news(query)
+    response = format_response_to_list_of_tuple(news_searched)
+
+    return response
 
 
 # Requisito 9
