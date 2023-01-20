@@ -1,5 +1,5 @@
 from tech_news.database import search_news
-from tech_news.utils.format_output import format_response_to_list_of_tuple
+from tech_news.utils.format_data import format_response_to_list_of_tuple
 import re
 import datetime
 

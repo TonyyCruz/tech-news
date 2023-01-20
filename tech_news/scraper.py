@@ -2,6 +2,7 @@ import requests
 import time
 from parsel import Selector
 from .database import create_news
+from tech_news.utils.format_data import format_paragraph
 
 
 # Requisito 1
@@ -32,15 +33,6 @@ def scrape_next_page_link(html_content):
 
 
 # Requisito 4
-def format_paragraph(text_paragraph):
-    selector = Selector(text=text_paragraph)
-    paragraph_data = selector.css("p *::text").getall()
-    paragraph_text = "".join(paragraph_data).replace("\xa0", "")
-    if paragraph_text.endswith(" "):
-        return paragraph_text[:-1]
-    return paragraph_text
-
-
 def scrape_news(html_content):
     selector = Selector(text=html_content)
 
